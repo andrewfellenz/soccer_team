@@ -13,6 +13,12 @@ import csv
 
 
 def get_families(family_list):
+    """get_families takes a CSV file as an argument, opens it for reading/writing,
+    takes each row out of the file and converts it into a dictionary (temporarily
+    named \"family\"), then adds that dictionary to a master dictionary named
+    \"families\". When the function has looped through each \"family\", the master
+    dictionary of \"families\" is then returned to the caller.
+    """
     with open(family_list, newline='') as csvfile:
         raw_info = csv.DictReader(csvfile, delimiter=',')
         families = dict()
@@ -27,10 +33,5 @@ def get_families(family_list):
         return families
 
 
-def divide_by_skill(players):
-    for 
-
 if __name__ == "__main__":
     families = get_families('soccer_players.csv')
-
-    divide_by_skill
