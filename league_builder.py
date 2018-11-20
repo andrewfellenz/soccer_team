@@ -25,10 +25,10 @@ team_list = [
 
 def get_families(family_list):
     """get_families takes a CSV file as an argument, opens it for reading/writing,
-    takes each row out of the file and converts it to a dictionary (temporarily
-    named \"family\"), then adds that dictionary to a master dictionary named
-    \"families\". When the function has looped through each \"family\",
-    the master dictionary of \"families\" is then returned to the caller.
+    takes each row out of the file and converts it to a dictionary,
+    then adds that dictionary to a master dictionary named \"families\".
+    When the function has looped through each \"family\", the master
+    dictionary of \"families\" is then returned to the caller.
     """
     with open(family_list, newline='') as csvfile:
         raw_info = csv.DictReader(csvfile, delimiter=',')
@@ -44,12 +44,12 @@ def get_families(family_list):
 
 
 def sort_players(family_list):
-    """sort_players takes a list of families,
-    sorts through the [\"Soccer Experience\"]
-    key of each player, and determines whether
+    """sort_players takes a list of families, sorts
+    through the [\"Soccer Experience\"] key
+    of each player, and determines whether
     to place them in the list of experienced
-    or inexperienced players.
-    These lists are then returned to the caller.
+    or inexperienced players. These lists are
+    then returned to the caller.
     """
     inexperienced_players = [value for value in family_list.values()
                              if value['Soccer Experience'] == 'NO']
@@ -59,10 +59,11 @@ def sort_players(family_list):
 
 
 def draft_teams(players, team_list):
-    """draft_teams takes a list players and a team list
-    uses the shuffle method from the random library to randomly
-    rearrange the players (while still preserving experience levels),
-    and sorts each of them into one of three teams, based on experience.
+    """draft_teams takes a list players and a team list uses
+    the shuffle method from the random library to randomly
+    rearrange the players (while still preserving experience
+    levels), and sorts each of them into one of three teams,
+    based on experience.
     """
     shuffle(players)
     count = 1
@@ -83,6 +84,9 @@ def draft_teams(players, team_list):
 
 
 def create_file(team):
+    """create_file writes all of the player\'s names and info into
+    an external file under the heading of their team\'s name.
+    """
     team_name = team[0]['Team']
     file.write('\n|{}\n'.format(team_name))
     for player in team:
