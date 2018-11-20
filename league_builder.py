@@ -58,25 +58,15 @@ def sort_players(family_list):
     return inexperienced_players, experienced_players
 
 
-def draft_teams(inexperienced_players, experienced_players, team_list):
-    """draft_teams takes two lists of players and a team list
-    uses the shuffle method, from the random library, to randomly
+def draft_teams(players, team_list):
+    """draft_teams takes a list players and a team list
+    uses the shuffle method from the random library to randomly
     rearrange the players (while still preserving experience levels),
     and sorts each of them into one of three teams, based on experience
     """
-    shuffle(experienced_players)
-    shuffle(inexperienced_players)
+    shuffle(players)
     count = 1
-    for player in experienced_players:
-        if count % 3 == 0:
-            team_list[2].append(player)
-        elif count % 2 == 0:
-            team_list[1].append(player)
-        else:
-            team_list[0].append(player)
-        count += 1
-    count = 1
-    for player in inexperienced_players:
+    for player in players:
         if count % 3 == 0:
             team_list[2].append(player)
         elif count % 2 == 0:
@@ -89,7 +79,8 @@ def draft_teams(inexperienced_players, experienced_players, team_list):
 if __name__ == "__main__":
     families = get_families('soccer_players.csv')
     inexperienced_players, experienced_players = sort_players(families)
-    draft_teams(inexperienced_players, experienced_players, team_list)
+    draft_teams(inexperienced_players, team_list)
+    draft_teams(experienced_players, team_list)
 
 
 # with open("teams.txt", "w") as file:
