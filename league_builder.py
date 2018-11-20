@@ -4,6 +4,8 @@
 # Define a function that evenly distributes the players amongst the teams
 # Define a function that creates letters for each set of guardians
 #     and outputs fit to a file named parentFirst_parentLast.txt
+#     This file must contain the player's name, the team's name, and
+#     it must start with "Dear {}" guardian(s) name.
 # Define a function that creates a file of the team rosters, named teams.txt
 
 # CODE MUST INCLUDE COMMENTS -- USE DOCSTRINGS AS WELL #
