@@ -62,18 +62,38 @@ def draft_teams(players, team_list):
     """draft_teams takes a list players and a team list
     uses the shuffle method from the random library to randomly
     rearrange the players (while still preserving experience levels),
-    and sorts each of them into one of three teams, based on experience
+    and sorts each of them into one of three teams, based on experience.
     """
     shuffle(players)
     count = 1
     for player in players:
         if count % 3 == 0:
+            # Adds player to the sharks team.
             team_list[2].append(player)
+            player['Team'] = 'Sharks'
         elif count % 2 == 0:
+            # Adds player to the raptors team.
             team_list[1].append(player)
+            player['Team'] = 'Raptors'
         else:
+            # Adds player to the dragons team.
             team_list[0].append(player)
+            player['Team'] = 'Dragons'
         count += 1
+
+
+def create_file(team):
+    team_name = team[0]['Team']
+    file.write('\n|{}\n'.format(team_name))
+    for player in team:
+        file.write('|{} \n Guardians: {}. Has played before: {}.\n'.format(
+            player['Name'],
+            player['Guardian Name(s)'],
+            player['Soccer Experience'].capitalize()))
+
+
+# def parent_letter(player):
+#     with open('{}_{}.txt'.format( placeholder ), 'w') as file:
 
 
 if __name__ == "__main__":
@@ -82,5 +102,7 @@ if __name__ == "__main__":
     draft_teams(inexperienced_players, team_list)
     draft_teams(experienced_players, team_list)
 
-
-# with open("teams.txt", "w") as file:
+    with open("teams.txt", "w") as file:
+        create_file(dragons)
+        create_file(raptors)
+        create_file(sharks)
