@@ -56,8 +56,7 @@ def draft_teams(players, team_list):
     """
     shuffle(players)
     # Shuffling players to create randomness in the draft.
-    count = 1
-    for player in players:
+    for count, player in enumerate(players):
         if count % 3 == 0:
             # Adds player to the sharks team.
             team_list[2].append(player)
@@ -70,7 +69,6 @@ def draft_teams(players, team_list):
             # Adds player to the dragons team.
             team_list[0].append(player)
             player['Team'] = 'Dragons'
-        count += 1
 
 
 def create_file(team):
