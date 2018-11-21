@@ -1,21 +1,7 @@
-# Define a function to pull all the families into a dictionary of dictionaries
-# Define a function to divide the players into lists based on experience
-# Create the teams: Sharks, Dragons, and Raptors
-# Define a function that evenly distributes the players amongst the teams
-# Define a function that creates letters for each set of guardians
-#     and outputs fit to a file named parentFirst_parentLast.txt
-#     This file must contain the player's name, the team's name, and
-#     it must start with "Dear {}" guardian(s) name.
-#     it must contain the start time and date of the first practice.
-# Define a function that creates a file of the team rosters, named teams.txt
-
-# CODE MUST INCLUDE COMMENTS -- USE DOCSTRINGS AS WELL #
-
-
 import csv
 from random import shuffle
 
-
+# Defining Teams
 dragons = []
 raptors = []
 sharks = []
@@ -117,15 +103,24 @@ def parent_letter(player):
 
 
 if __name__ == "__main__":
+    # Calling the functions.
+
     families = get_families('soccer_players.csv')
+    # Setting the families variables to include all the player dictionaries.
+
     inexperienced_players, experienced_players = sort_players(families)
+    # Sorting through players by experience level.
+
     draft_teams(inexperienced_players, team_list)
     draft_teams(experienced_players, team_list)
+    # Drafting the players by experience level into their teams.
 
     with open("teams.txt", "w") as file:
+        # Creating the team.txt file with the team rosters.
         create_file(dragons)
         create_file(raptors)
         create_file(sharks)
 
     for value in families.values():
+        # Printing parent letters for each player.
         parent_letter(value)
