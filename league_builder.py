@@ -6,6 +6,7 @@
 #     and outputs fit to a file named parentFirst_parentLast.txt
 #     This file must contain the player's name, the team's name, and
 #     it must start with "Dear {}" guardian(s) name.
+#     it must contain the start time and date of the first practice.
 # Define a function that creates a file of the team rosters, named teams.txt
 
 # CODE MUST INCLUDE COMMENTS -- USE DOCSTRINGS AS WELL #
@@ -98,8 +99,21 @@ def create_file(team):
             player['Soccer Experience'].capitalize()))
 
 
-# def parent_letter(player):
-#     with open('{}_{}.txt'.format( placeholder ), 'w') as file:
+def parent_letter(player):
+    """parents_letter creates an individualized letter to the parent(s)
+    of each player. It details what team they are on and the date and
+    time of the first team practice.
+    """
+    with open('{}.txt'.format
+              (player['Name'].replace(' ', '_').lower()), 'w') as file:
+        file.write(
+            """Dear {},\n\n    {} has been selected to play for the {}.\
+            \nPlease be advised that the first day of practice is\
+            \nSaturday, December 1st, 12:30pm, at Springfield Park.\n\
+            \nThank you,\
+            \n-Coach Drew\
+            """.format(player['Guardian Name(s)'],
+                       player['Name'].split(' ')[0], player['Team']))
 
 
 if __name__ == "__main__":
@@ -112,3 +126,6 @@ if __name__ == "__main__":
         create_file(dragons)
         create_file(raptors)
         create_file(sharks)
+
+    for value in families.values():
+        parent_letter(value)
