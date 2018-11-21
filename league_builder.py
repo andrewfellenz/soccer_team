@@ -1,7 +1,7 @@
 import csv
 from random import shuffle
 
-# Defining Teams
+# Defining Teams.
 dragons = []
 raptors = []
 sharks = []
@@ -55,6 +55,7 @@ def draft_teams(players, team_list):
     based on experience.
     """
     shuffle(players)
+    # Shuffling players to create randomness in the draft.
     count = 1
     for player in players:
         if count % 3 == 0:
