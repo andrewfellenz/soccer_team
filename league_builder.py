@@ -48,7 +48,7 @@ def sort_players(family_list):
 
 
 def draft_teams(players, team_list):
-    """draft_teams takes a list players and a team list uses
+    """draft_teams takes a list of players and a team list, uses
     the shuffle method from the random library to randomly
     rearrange the players (while still preserving experience
     levels), and sorts each of them into one of three teams,
@@ -87,7 +87,7 @@ def create_file(team):
 
 
 def parent_letter(player):
-    """parents_letter creates an individualized letter to the parent(s)
+    """parent_letter creates an individualized letter to the parent(s)
     of each player. It details what team they are on and the date and
     time of the first team practice.
     """
