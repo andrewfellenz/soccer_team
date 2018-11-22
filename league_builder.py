@@ -77,6 +77,7 @@ def create_file(team):
     """
     team_name = team[0]['Team']
     file.write('\n|{}\n'.format(team_name))
+    # First player's 'Team' key is used to write the team name as a header.
     for player in team:
         file.write('|{} \n Guardians: {}. Has played before: {}.\n'.format(
             player['Name'],
@@ -91,12 +92,13 @@ def parent_letter(player):
     """
     with open('{}.txt'.format
               (player['Name'].replace(' ', '_').lower()), 'w') as file:
+        # Uses player's name with '_' instead of space as file name.
         file.write(
             """Dear {},\n\n    {} has been selected to play for the {}.\
             \nPlease be advised that the first day of practice is\
             \nSaturday, December 1st, 12:30pm, at Springfield Park.\n\
             \nThank you,\
-            \n-Coach Drew\
+            \n-Coach Drew\n\
             """.format(player['Guardian Name(s)'],
                        player['Name'].split(' ')[0], player['Team']))
 
