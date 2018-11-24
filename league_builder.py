@@ -13,11 +13,10 @@ team_list = [
 
 
 def get_families(family_list):
-    """get_families takes a CSV file as an argument, opens it for reading/writing,
-    takes each row out of the file and converts it to a dictionary,
-    then adds that dictionary to a master dictionary named \"families\".
-    When the function has looped through each \"family\", the master
-    dictionary of \"families\" is then returned to the caller.
+    """get_families takes a CSV file as an
+    argument, opens it for reading/writing,
+    converts the data into a dict of
+    dicts, and returns that master dict.
     """
     with open(family_list, newline='') as csvfile:
         raw_info = csv.DictReader(csvfile, delimiter=',')
@@ -34,16 +33,20 @@ def get_families(family_list):
 
 def sort_players(family_list):
     """sort_players takes a list of families, sorts
-    through the [\"Soccer Experience\"] key
+    through the ['Soccer Experience'] key
     of each player, and determines whether
     to place them in the list of experienced
     or inexperienced players. These lists are
     then returned to the caller.
     """
-    inexperienced_players = [value for value in family_list.values()
-                             if value['Soccer Experience'] == 'NO']
-    experienced_players = [value for value in family_list.values()
-                           if value['Soccer Experience'] == 'YES']
+    inexperienced_players = [
+        value for value in family_list.values()
+        if value['Soccer Experience'] == 'NO'
+    ]
+    experienced_players = [
+        value for value in family_list.values()
+        if value['Soccer Experience'] == 'YES'
+    ]
     return inexperienced_players, experienced_players
 
 
@@ -72,8 +75,8 @@ def draft_teams(players, team_list):
 
 
 def create_file(team):
-    """create_file writes all of the player\'s names and info into
-    an external file under the heading of their team\'s name.
+    """create_file writes all of the player's names and info into
+    an external file under the heading of their team's name's.
     """
     team_name = team[0]['Team']
     file.write('\n|{}\n'.format(team_name))
@@ -82,7 +85,8 @@ def create_file(team):
         file.write('|{} \n Guardians: {}. Has played before: {}.\n'.format(
             player['Name'],
             player['Guardian Name(s)'],
-            player['Soccer Experience'].capitalize()))
+            player['Soccer Experience'].capitalize())
+        )
 
 
 def parent_letter(player):
@@ -94,8 +98,8 @@ def parent_letter(player):
               (player['Name'].replace(' ', '_').lower()), 'w') as file:
         # Uses player's name with '_' instead of space as file name.
         file.write(
-            """Dear {},\n\n    {} has been selected to play for the {}.\
-            \nPlease be advised that the first day of practice is\
+            """Dear {},\n\n    {} has been drafted to play for the {} team.\
+            \nPlease be advised that the first day of practice is this\
             \nSaturday, December 1st, 12:30pm, at Springfield Park.\n\
             \nThank you,\
             \n-Coach Drew\n\
