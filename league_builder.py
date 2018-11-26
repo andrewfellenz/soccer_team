@@ -21,7 +21,6 @@ def get_families(family_list):
     with open(family_list, newline='') as csvfile:
         raw_info = csv.DictReader(csvfile, delimiter=',')
         families = dict()
-        family = dict()
         count = 1
         for row in raw_info:
             families[count] = {}
@@ -57,8 +56,8 @@ def draft_teams(players, team_list):
     levels), and sorts each of them into one of three teams,
     based on experience.
     """
-    shuffle(players)
     # Shuffling players to create randomness in the draft.
+    shuffle(players)
     for count, player in enumerate(players, start=1):
         if count % 3 == 0:
             # Adds player to the sharks team.
@@ -78,9 +77,9 @@ def create_file(team):
     """create_file writes all of the player's names and info into
     an external file under the heading of their team's name's.
     """
+    # First player's 'Team' key is used to write the team name as a header.
     team_name = team[0]['Team']
     file.write('\n|{}\n'.format(team_name))
-    # First player's 'Team' key is used to write the team name as a header.
     for player in team:
         file.write('|{} \n Guardians: {}. Has played before: {}.\n'.format(
             player['Name'],
@@ -94,9 +93,9 @@ def parent_letter(player):
     of each player. It details what team they are on and the date and
     time of the first team practice.
     """
+    # Uses player's name with '_' instead of space as file name.
     with open('{}.txt'.format
               (player['Name'].replace(' ', '_').lower()), 'w') as file:
-        # Uses player's name with '_' instead of space as file name.
         file.write(
             """Dear {},\n\n    {} has been drafted to play for the {} team.\
             \nPlease be advised that the first day of practice is this\
@@ -107,25 +106,25 @@ def parent_letter(player):
                        player['Name'].split(' ')[0], player['Team']))
 
 
+# Calling the functions.
 if __name__ == "__main__":
-    # Calling the functions.
 
-    families = get_families('soccer_players.csv')
     # Setting the families variables to include all the player dictionaries.
+    families = get_families('soccer_players.csv')
 
-    inexperienced_players, experienced_players = sort_players(families)
     # Sorting through players by experience level.
+    inexperienced_players, experienced_players = sort_players(families)
 
+    # Drafting the players by experience level into their teams.
     draft_teams(inexperienced_players, team_list)
     draft_teams(experienced_players, team_list)
-    # Drafting the players by experience level into their teams.
 
+    # Creating the team.txt file with the team rosters.
     with open("teams.txt", "w") as file:
-        # Creating the team.txt file with the team rosters.
         create_file(dragons)
         create_file(raptors)
         create_file(sharks)
 
+    # Printing parent letters for each player.
     for value in families.values():
-        # Printing parent letters for each player.
         parent_letter(value)
